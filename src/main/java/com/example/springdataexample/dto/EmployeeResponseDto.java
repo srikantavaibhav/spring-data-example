@@ -11,6 +11,7 @@ public class EmployeeResponseDto
     private Long id;
     private String name;
     private DepartmentResponseDto department;
+    private String code;
 
     public void setDepartmentFromEntity(Department departmentFromEntity){
         DepartmentResponseDto departmentResponseDto = new DepartmentResponseDto();

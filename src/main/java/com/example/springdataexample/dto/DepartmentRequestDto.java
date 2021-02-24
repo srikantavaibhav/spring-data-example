@@ -8,4 +8,5 @@ import lombok.Setter;
 public class DepartmentRequestDto {
     private Long departmentId;
     private String departmentName;
+    private String departmentCode;
 }

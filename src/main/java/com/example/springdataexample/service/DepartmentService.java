@@ -9,4 +9,6 @@ public interface DepartmentService {
     DepartmentResponseDto createDepartment(DepartmentRequestDto departmentRequestDto);
 
     Department getDepartmentById(Long departmentId);
+
+    DepartmentResponseDto updateDepartment(Long departmentId, DepartmentRequestDto departmentRequestDto);
 }

@@ -18,7 +18,7 @@ public class Department {
 
     private String departmentName;
 
-    @JoinColumn(referencedColumnName = "departmentId", name = "department_department_id")
-    @OneToMany
-    List<Employee> employeeList;
+    //@JoinColumn(referencedColumnName = "departmentId", name = "department_department_id")
+    //@OneToMany
+    //List<Employee> employeeList;
 }
