@@ -3,6 +3,8 @@ package com.example.springdataexample.service;
 import com.example.springdataexample.dto.EmployeeRequestDto;
 import com.example.springdataexample.dto.EmployeeResponseDto;
 
+import java.util.List;
+
 
 public interface EmployeeService
 {
@@ -12,4 +14,5 @@ public interface EmployeeService
     EmployeeResponseDto deleteEmployeeById(Long id);
 
 
+    List<EmployeeResponseDto> getEmployeeByDepartment(Long departmentId);
 }
