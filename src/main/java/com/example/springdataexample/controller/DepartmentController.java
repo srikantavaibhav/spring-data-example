@@ -30,4 +30,11 @@ public class DepartmentController {
     {
         return departmentService.updateDepartment(departmentId, departmentRequestDto);
     }
+
+    //GET - /department/mostExperienced
+    @GetMapping("/department/mostExperienced")
+    public DepartmentResponseDto getMostExperiencedDepartment()
+    {
+        return departmentService.getMostExperiencedDepartment();
+    }
 }

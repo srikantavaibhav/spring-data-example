@@ -12,6 +12,7 @@ public class EmployeeResponseDto
     private String name;
     private DepartmentResponseDto department;
     private String code;
+    private Integer yearsOfExperience;
 
     public void setDepartmentFromEntity(Department departmentFromEntity){
         DepartmentResponseDto departmentResponseDto = new DepartmentResponseDto();

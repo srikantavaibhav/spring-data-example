@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -69,4 +72,55 @@ public class DepartmentServiceImpl implements DepartmentService {
 
         return responseDto;
     }
+
+    @Override
+    public DepartmentResponseDto getMostExperiencedDepartment()
+    {
+        List<Employee> employeeList =(List<Employee>) employeeRepository.findAll();
+        List<Long> departmentIdList = new ArrayList<>();
+        for(Employee employee: employeeList)
+        {
+            departmentIdList.add(employee.getDepartment().getDepartmentId());
+        }
+
+        Map<Long,Integer> departmentAndExperience = new HashMap<>();
+        for(Long departmentId: departmentIdList)
+        {
+            int departmentExperience = 0;
+            for(Employee employee: employeeList)
+            {
+                if(departmentId==employee.getDepartment().getDepartmentId())
+                {
+                    departmentExperience+=employee.getYearsOfExperience();
+                }
+            }
+            departmentAndExperience.put(departmentId, departmentExperience);
+        }
+        DepartmentResponseDto mostExperiencedDepartment = new DepartmentResponseDto();
+        Employee employee=new Employee();
+
+        int maxDepartmentExperience = 0;
+        Long maxDepartmentExperienceID=null;
+        for(Long departmartId: departmentAndExperience.keySet())
+        {
+            if(departmentAndExperience.get(departmartId)>maxDepartmentExperience)
+            {
+                maxDepartmentExperience=departmentAndExperience.get(departmartId);
+                maxDepartmentExperienceID=departmartId;
+            }
+        }
+        for(Employee empTemp: employeeList)
+        {
+            if(maxDepartmentExperienceID==empTemp.getDepartment().getDepartmentId()) {
+                employee = empTemp;
+                break;
+            }
+        }
+
+        BeanUtils.copyProperties(employee.getDepartment(),mostExperiencedDepartment);
+        return mostExperiencedDepartment;
+
+
+    }
+
 }

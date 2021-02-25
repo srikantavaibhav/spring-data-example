@@ -1,5 +1,6 @@
 package com.example.springdataexample.controller;
 
+import com.example.springdataexample.dto.DepartmentResponseDto;
 import com.example.springdataexample.dto.EmployeeRequestDto;
 import com.example.springdataexample.dto.EmployeeResponseDto;
 import com.example.springdataexample.entity.Employee;
@@ -53,4 +54,20 @@ public class EmployeeController
     {
         return employeeService.getEmployeeByDepartment(id);
     }
+
+    //GET - /mostExperienced
+    @GetMapping("/mostExperienced")
+    public EmployeeResponseDto getMostExperiencedEmployeeAmongAllEmployee()
+    {
+        return employeeService.getMostExperiencedEmployeeAmongAllEmployee();
+    }
+
+    //GET - /department/{departmentId}/employee/mostExperienced
+    @GetMapping("/department/{departmentId}/employee/mostExperienced")
+    public EmployeeResponseDto getMostExperiencedEmployeeInADepartment(@PathVariable("departmentId") Long id)
+    {
+        return employeeService.getMostExperiencedEmployeeInADepartment(id);
+    }
+
+
 }

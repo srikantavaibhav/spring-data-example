@@ -12,4 +12,5 @@ public class EmployeeRequestDto {
     private String name;
     private DepartmentRequestDto department;
     private String code;
+    private Integer yearsOfExperience;
 }

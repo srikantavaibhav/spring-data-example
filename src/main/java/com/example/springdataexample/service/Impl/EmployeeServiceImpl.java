@@ -152,4 +152,51 @@ public class EmployeeServiceImpl implements EmployeeService
         }
         return employeeResponseDtoList;
     }
+
+    @Override
+    public EmployeeResponseDto getMostExperiencedEmployeeAmongAllEmployee()
+    {
+        List<Employee> employeeList = (List<Employee>) employeeRepository.findAll();
+        Integer maxExperience=0;
+        Employee maxExperiencedEmployee=new Employee();
+
+        if(employeeList.size()>0) {
+            for (Employee employee : employeeList) {
+                if (employee.getYearsOfExperience() > maxExperience) {
+                    maxExperience = employee.getYearsOfExperience();
+                    maxExperiencedEmployee = employee;
+                }
+            }
+            EmployeeResponseDto responseDto = new EmployeeResponseDto();
+            BeanUtils.copyProperties(maxExperiencedEmployee, responseDto);
+            responseDto.setDepartmentFromEntity(maxExperiencedEmployee.getDepartment());
+
+            return responseDto;
+        }
+        return null;
+
+    }
+
+    @Override
+    public EmployeeResponseDto getMostExperiencedEmployeeInADepartment(Long departmentId)
+    {
+        List<EmployeeResponseDto> employeeResponseDtoList = getEmployeeByDepartment(departmentId);
+
+
+
+        Integer maxExperience = 0;
+        EmployeeResponseDto maxExperiencedEmployee = new EmployeeResponseDto();
+
+        if (employeeResponseDtoList.size() > 0) {
+            for (EmployeeResponseDto employeeResponseDto : employeeResponseDtoList) {
+                if (employeeResponseDto.getYearsOfExperience() > maxExperience) {
+                    maxExperience = employeeResponseDto.getYearsOfExperience();
+                    maxExperiencedEmployee = employeeResponseDto;
+                }
+            }
+            return maxExperiencedEmployee;
+        }
+        return null;
+
+    }
 }

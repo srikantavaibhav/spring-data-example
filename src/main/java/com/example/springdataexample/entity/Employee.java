@@ -22,6 +22,8 @@ public class Employee
 
     private String code;
 
+    private Integer yearsOfExperience;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private Department department;

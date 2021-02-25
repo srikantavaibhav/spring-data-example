@@ -11,4 +11,6 @@ public interface DepartmentService {
     Department getDepartmentById(Long departmentId);
 
     DepartmentResponseDto updateDepartment(Long departmentId, DepartmentRequestDto departmentRequestDto);
+
+    DepartmentResponseDto getMostExperiencedDepartment();
 }
